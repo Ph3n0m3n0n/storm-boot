@@ -16,8 +16,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(stormpath.init(app, {
-	website: true,
-	href: 'PUT_YOUR_APPLICATION_LINK_HERE'
+	website: true
 }));
 
 // uncomment after placing your favicon in /public
