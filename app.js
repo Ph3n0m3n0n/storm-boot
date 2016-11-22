@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+// Requires the express-stormpath module
 var stormpath = require('express-stormpath');
 
 var index = require('./routes/index');
@@ -15,6 +16,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// Initializes Stormpath and sets up for website user authentication
 app.use(stormpath.init(app, {
 	website: true
 }));
@@ -48,6 +50,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// Ensures that the app will not run until Stormpath is ready.
 app.on('stormpath.ready', function(){
 	console.log('Stormpath is ready!');
 });
